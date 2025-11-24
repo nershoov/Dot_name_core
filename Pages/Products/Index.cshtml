@@ -1,0 +1,52 @@
+﻿@page
+@using ExampleApplication.Helpers
+@model ExampleApplication.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Список товаров";
+}
+@{
+    <div class="mt-4">
+        <h2>Товары</h2>
+
+        <div class="row">
+            <div class="col-12">
+                @TempData["Response"]
+            </div>
+            <div class="col-12 mb-3">
+                <a href="/Products/Create" class="btn btn-success">Добавить новое животное</a>
+            </div>
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col">Цвет</th>
+                            <th scope="col">Возраст</th>
+                            <th scope="col">Тип</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in FakeDatabase._products)
+                        {
+                            <tr>
+                                <th scope="row">@product.Id</th>
+                                <td>@product.Name</td>
+                                <td>@product.Price</td>
+                                <td>@product.Color</td>
+                                <td>@product.Age</td>
+                                <td>@product.Animal</td>
+                                <td>
+                                    <a href="/Products/EditClass?Id=@product.Id" class="me-2">Редактировать</a>
+                                    <a href="/Products/Delete?Id=@product.Id" class="me-2">Удалить</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

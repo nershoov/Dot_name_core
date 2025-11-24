@@ -1,0 +1,42 @@
+﻿@page
+@model ExampleApplication.Pages.Products.CreateModel
+@{
+    ViewData["Title"] = "Добавление животного";
+}
+
+<div class="mt-4">
+    <h2>Добавление нового животного</h2>
+
+    <div class="row">
+        <div class="col-12">
+            <div>@TempData["Response"]</div>
+        </div>
+        <div class="col-12">
+            <form method="post">
+                <div class="field">
+                    <input asp-for="NewProduct.Name" placeholder="Имя животного" type="text" class="text-field" />
+                </div>
+                <div class="field">
+                    <input asp-for="NewProduct.Price" placeholder="Цена животного" type="text" class="text-field" />
+                </div>
+                <div class="field">
+                    <input asp-for="NewProduct.Color" placeholder="Цвет животного" type="text" class="text-field" />
+                </div>
+                <div class="field">
+                    <input asp-for="NewProduct.Age" placeholder="Возраст животного" type="text" class="text-field" />
+                </div>
+                <div class="field">
+                    <input asp-for="NewProduct.Animal" placeholder="Тип животного" type="text" class="text-field" />
+                </div>
+                <div class="field">
+                    <button type="submit">Добавить животное</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12">
+            <div>
+                <a href="/Products/Index">Вернуться назад</a>
+            </div>
+        </div>
+    </div>
+</div>

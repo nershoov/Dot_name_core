@@ -1,0 +1,58 @@
+﻿@page
+@model ExampleApplication.Pages.Products.DeleteModel
+@{
+    ViewData["Title"] = "Удаление товара";
+}
+
+<div class="mt-4">
+    <h2>Удаление товара</h2>
+
+    <div class="row">
+        <div class="col-12">
+            <div>@TempData["Response"]</div>
+        </div>
+
+        @if (Model.ProductToDelete != null)
+        {
+            <div class="col-12 mb-4">
+                <div class="alert alert-warning">
+                    <h5>Вы действительно хотите удалить это животное?</h5>
+                    <p>Это действие нельзя будет отменить.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.ProductToDelete.Name</h5>
+                        <p class="card-text">
+                            <strong>Цена:</strong> @Model.ProductToDelete.Price руб.<br>
+                            <strong>Цвет:</strong> @Model.ProductToDelete.Color<br>
+                            <strong>Возраст:</strong> @Model.ProductToDelete.Age лет<br>
+                            <strong>Животное:</strong> @Model.ProductToDelete.Animal
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <form method="post">
+                    <input type="hidden" asp-for="ProductToDelete.Id" />
+                    <div class="field">
+                        <button type="submit" class="btn btn-danger me-2">Да, удалить</button>
+                        <a href="/Products/Index" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    Товар не найден.
+                </div>
+                <div>
+                    <a href="/Products/Index" class="btn btn-secondary">Вернуться назад</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@page
+@model ExampleApplication.Pages.Products.EditClassModel
+@{
+    ViewData["Title"] = "Редактирование товара";
+}
+
+<div class="mt-4">
+    <h2>Редактирование товара с классом</h2>
+
+    <div class="row">
+        <div class="col-12">
+            @if (!string.IsNullOrEmpty(TempData["Response"]?.ToString()))
+            {
+                <div class="alert @(TempData["Response"]?.ToString().Contains("Ошибка") == true ? "alert-danger" : "alert-success")">
+                    @TempData["Response"]
+                </div>
+            }
+        </div>
+
+        @if (Model.MyProduct != null && Model.MyProduct.Id > 0)
+        {
+            <div class="col-12">
+                <form method="post">
+                    <input asp-for="MyProduct.Id" type="hidden" />
+                    <div class="field">
+                        <label asp-for="MyProduct.Name">Имя</label>
+                        <input asp-for="MyProduct.Name" placeholder="Имя" type="text" class="text-field" />
+                    </div>
+                    <div class="field">
+                        <label asp-for="MyProduct.Price">Цена животного</label>
+                        <input asp-for="MyProduct.Price" placeholder="Цена животного" type="text" class="text-field" />
+                    </div>
+                    <div class="field">
+                        <label asp-for="MyProduct.Color">Цвет животного</label>
+                        <input asp-for="MyProduct.Color" placeholder="Цвет животного" type="text" class="text-field" />
+                    </div>
+                    <div class="field">
+                        <label asp-for="MyProduct.Age">Возраст животного</label>
+                        <input asp-for="MyProduct.Age" placeholder="Возраст животного" type="text" class="text-field" />
+                    </div>
+                    <div class="field">
+                        <label asp-for="MyProduct.Animal">Тип животного</label>
+                        <input asp-for="MyProduct.Animal" placeholder="Тип животного" type="text" class="text-field" />
+                    </div>
+                    <div class="field">
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    Не удалось загрузить данные товара для редактирования.
+                </div>
+            </div>
+        }
+
+        <div class="col-12 mt-3">
+            <div>
+                <a href="/Products/Index" class="btn btn-secondary">Вернуться назад</a>
+            </div>
+        </div>
+    </div>
+</div>
